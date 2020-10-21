@@ -1,0 +1,26 @@
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: docs-ingress
+  namespace: techmonkey-docs
+  annotations:
+    cert-manager.io/issuer: docs-letsencrypt
+    kubernetes.io/ingress.class: "traefik"
+    traefik.ingress.kubernetes.io/redirect-entry-point: https
+    traefik.ingress.kubernetes.io/frontend-entry-points: http,https
+
+
+spec:
+  tls:
+  - hosts:
+    - docs.techmonkey.cc
+    secretName: docs-secret
+  rules:
+  - host: docs.techmonkey.cc
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: docs-svc
+          servicePort: 80
