@@ -18,6 +18,6 @@ spec:
     spec:
       containers:
       - name: docs
-        image: pheurtley/techmonkey-docs:0.1
+        image: pheurtley/techmonkey-docs:0.2
         ports:
         - containerPort: 80
